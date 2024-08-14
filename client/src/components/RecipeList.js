@@ -1,38 +1,36 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import RecipeCard from '../components/RecipeCard';
+import '../styles/RecipeList.css'; 
 
 function RecipeList() {
-  const [recipes, setRecipes] = useState([]);
+    const [recipes, setRecipes] = useState([]);
 
-  useEffect(() => {
-    const fetchRecipes = async () => {
-      try {
-        const res = await axios.get('/api/recipes', {
-          headers: { 'x-auth-token': localStorage.getItem('token') }
-        });
-        setRecipes(res.data);
-      } catch (err) {
-        console.error('Error fetching recipes:', err);
-      }
-    };
+    useEffect(() => {
+        const fetchRecipes = async () => {
+            try {
+                const res = await axios.get('/api/recipes/random', {
+                    headers: { 'x-auth-token': localStorage.getItem('token') },
+                });
+                setRecipes(res.data);
+            } catch (error) {
+                console.error('Error fetching random recipes:', error);
+            }
+        };
 
-    fetchRecipes();
-  }, []);
+        fetchRecipes();
+    }, []);
 
-  return (
-    <div className="container">
-      <h2>Your Recipes</h2>
-      <ul>
-        {recipes.map(recipe => (
-          <li key={recipe._id}>
-            <h3>{recipe.title}</h3>
-            <p>{recipe.ingredients}</p>
-            {recipe.imageUrl && <img src={recipe.imageUrl} alt={recipe.title} />}
-          </li>
-        ))}
-      </ul>
-    </div>
-  );
+    return (
+        <div className="recipe-list-container">
+            <h2>Discover New Recipes</h2>
+            <div className="recipe-list">
+                {recipes.map(recipe => (
+                    <RecipeCard key={recipe.id} recipe={recipe} />
+                ))}
+            </div>
+        </div>
+    );
 }
 
 export default RecipeList;

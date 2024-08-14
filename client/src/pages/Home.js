@@ -1,13 +1,17 @@
-// Home page
 import React from 'react';
+import '../styles/Home.css';
 
-function Home() {
+const Home = () => {
   return (
-    <div>
-      <h1>Welcome to the Recipe App</h1>
-      <p>Manage and discover recipes with ease.</p>
+    <div className="home-container">
+      <div className="hero-image">
+        <div className='hero-message'>
+        <h1>Welcome to RecipeCraft</h1>
+        <p>Explore and create amazing recipes. Discover new flavors and share your culinary masterpieces with the world!</p>
+        </div>
+      </div>
     </div>
   );
-}
+};
 
 export default Home;

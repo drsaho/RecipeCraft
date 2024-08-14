@@ -1,19 +1,14 @@
-// Recipe routes
 const express = require('express');
-const router = express.Router();
-const { getRecipes, createRecipe, updateRecipe, deleteRecipe } = require('../controllers/recipeController');
+const { getRandomRecipes, saveFavorite, getFavorites, addRecipe } = require('../controllers/recipeController');
 const authMiddleware = require('../middleware/authMiddleware');
 
-// Get all recipes for the user (protected route)
-router.get('/', authMiddleware, getRecipes);
+const router = express.Router();
 
-// Create a new recipe (protected route)
-router.post('/', authMiddleware, createRecipe);
+router.get('/random', authMiddleware, getRandomRecipes);
+router.post('/favorite', authMiddleware, saveFavorite);
+router.get('/favorites', authMiddleware, getFavorites);
 
-// Update an existing recipe (protected route)
-router.put('/:id', authMiddleware, updateRecipe);
 
-// Delete a recipe (protected route)
-router.delete('/:id', authMiddleware, deleteRecipe);
+router.post('/', authMiddleware, addRecipe);
 
 module.exports = router;

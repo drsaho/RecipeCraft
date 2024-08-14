@@ -1,18 +1,43 @@
-// Service to interact with Spoonacular API
 const axios = require('axios');
 
-exports.searchRecipes = async (query) => {
-  try {
-    const response = await axios.get(`https://api.spoonacular.com/recipes/complexSearch`, {
-      params: {
-        query,
+const spoonacularAPI = axios.create({
+    baseURL: 'https://api.spoonacular.com/',
+    params: {
         apiKey: process.env.SPOONACULAR_API_KEY,
-      },
-    });
+    },
+});
 
-    return response.data.results;
-  } catch (err) {
-    console.error(err.message);
-    throw new Error('Error fetching recipes from Spoonacular API');
-  }
+const searchRecipes = async (query, number = 10, offset = 0) => {
+    try {
+        const response = await spoonacularAPI.get('recipes/complexSearch', {
+            params: {
+                query,
+                number,
+                offset,
+            },
+        });
+        return response.data.results;
+    } catch (error) {
+        console.error('Error fetching recipes:', error);
+        throw error;
+    }
+};
+
+const getRandomRecipes = async (number = 10) => {
+    try {
+        const response = await spoonacularAPI.get('recipes/random', {
+            params: {
+                number,
+            },
+        });
+        return response.data.recipes;
+    } catch (error) {
+        console.error('Error fetching random recipes:', error);
+        throw error;
+    }
+};
+
+module.exports = {
+    searchRecipes,
+    getRandomRecipes,
 };
