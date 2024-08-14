@@ -1,17 +1,37 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { getRandomRecipes } from '../utils/api';
 import RecipeCard from '../components/RecipeCard';
-import '../styles/Recipes.css'; 
+import '../styles/Recipes.css';
 
-function Recipes({ recipes = [] }) { // Provide a default empty array for recipes
+function Recipes() {
+    const [recipes, setRecipes] = useState([]);
+    const [error, setError] = useState(null);
+
+    const fetchRecipes = async () => {
+        try {
+            const data = await getRandomRecipes(18); 
+            setRecipes(data.recipes);
+        } catch (err) {
+            console.error('Failed to fetch recipes:', err);
+            setError('Failed to fetch recipes');
+        }
+    };
+
+    useEffect(() => {
+        fetchRecipes(); 
+    }, []);
+
     return (
-        <div className="recipe-list">
-            {recipes.length > 0 ? (
-                recipes.map((recipe) => (
+        <div className="recipes-container">
+            <button className="refresh-button" onClick={fetchRecipes}>
+                Refresh Recipes
+            </button>
+            {error && <p>{error}</p>}
+            <div className="recipe-list">
+                {recipes.map((recipe) => (
                     <RecipeCard key={recipe.id} recipe={recipe} />
-                ))
-            ) : (
-                <p>No recipes found</p> // Message to display if there are no recipes
-            )}
+                ))}
+            </div>
         </div>
     );
 }

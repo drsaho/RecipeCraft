@@ -7,8 +7,6 @@ const router = express.Router();
 router.get('/random', authMiddleware, getRandomRecipes);
 router.post('/favorite', authMiddleware, saveFavorite);
 router.get('/favorites', authMiddleware, getFavorites);
-
-
 router.post('/', authMiddleware, addRecipe);
 
 module.exports = router;
