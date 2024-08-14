@@ -1,16 +1,12 @@
-// Auth routes
 const express = require('express');
-const router = express.Router();
-const { register, login, getUser } = require('../controllers/authController');
+const { register, login, getUser, updateProfileImage } = require('../controllers/authController');
 const authMiddleware = require('../middleware/authMiddleware');
 
-// Register a new user
+const router = express.Router();
+
 router.post('/register', register);
-
-// Login an existing user
 router.post('/login', login);
-
-// Get the logged-in user's info (protected route)
 router.get('/', authMiddleware, getUser);
+router.put('/profile-image', authMiddleware, updateProfileImage);
 
 module.exports = router;

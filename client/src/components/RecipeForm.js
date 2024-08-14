@@ -1,51 +1,54 @@
-// Form for adding or updating recipes
 import React, { useState } from 'react';
 import axios from 'axios';
 
-function RecipeForm({ onSave }) {
-  const [title, setTitle] = useState('');
-  const [ingredients, setIngredients] = useState('');
-  const [instructions, setInstructions] = useState('');
-  const [imageUrl, setImageUrl] = useState('');
+const RecipeForm = () => {
+  const [formData, setFormData] = useState({
+    title: '',
+    ingredients: '',
+    instructions: ''
+  });
+
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const newRecipe = { title, ingredients, instructions, imageUrl };
-
-    const res = await axios.post('/api/recipes', newRecipe, {
-      headers: { 'x-auth-token': localStorage.getItem('token') }
-    });
-
-    onSave(res.data);
+    try {
+      const res = await axios.post('/api/recipes', formData); 
+      console.log('Recipe added:', res.data);
+    } catch (error) {
+      console.error('Error adding recipe:', error);
+    }
   };
 
   return (
     <form onSubmit={handleSubmit}>
       <input
         type="text"
+        name="title"
+        value={formData.title}
+        onChange={handleChange}
         placeholder="Title"
-        value={title}
-        onChange={(e) => setTitle(e.target.value)}
+        required
       />
       <textarea
+        name="ingredients"
+        value={formData.ingredients}
+        onChange={handleChange}
         placeholder="Ingredients"
-        value={ingredients}
-        onChange={(e) => setIngredients(e.target.value)}
+        required
       />
       <textarea
+        name="instructions"
+        value={formData.instructions}
+        onChange={handleChange}
         placeholder="Instructions"
-        value={instructions}
-        onChange={(e) => setInstructions(e.target.value)}
+        required
       />
-      <input
-        type="text"
-        placeholder="Image URL"
-        value={imageUrl}
-        onChange={(e) => setImageUrl(e.target.value)}
-      />
-      <button type="submit">Save Recipe</button>
+      <button type="submit">Add Recipe</button>
     </form>
   );
-}
+};
 
 export default RecipeForm;

@@ -1,0 +1,123 @@
+/* Global Styles */
+body {
+  font-family: 'Georgia', serif; 
+  background-color: #faf3e0; 
+  padding: 0;
+  color: #5a4b3f;
+}
+
+h1, h2, h3 {
+  font-weight: 400; 
+}
+
+.container {
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+  background-color: #f9f4e7; 
+  border-radius: 10px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); 
+  padding: 20px;
+}
+
+button {
+  padding: 10px 20px;
+  border: 2px solid #a67c52; 
+  border-radius: 5px;
+  background-color: #b08968;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #855e42;
+}
+
+input[type="text"], input[type="email"], input[type="password"] {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  border-radius: 5px;
+  border: 1px solid #a67c52;
+  font-size: 16px;
+  background-color: #f5eee0; 
+}
+
+/* Navbar Styles */
+.navbar {
+    background-color: #5a4b3f;
+    padding: 15px 0;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.navbar h1 {
+    color: #f9f4e7;
+    text-align: center;
+    margin: 0;
+    font-size: 26px;
+    font-weight: bold;
+    font-family: 'Garamond', serif; 
+    
+    padding-right: 20px;
+}
+
+.navbar ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+.navbar ul li {
+    margin: 0 10px;
+}
+
+.navbar ul li a {
+    color: #f9f4e7;
+    text-decoration: none;
+    font-size: 1.1rem;
+    padding: 10px 20px;
+    font-family: 'Garamond', serif;
+    transition: background-color 0.3s ease;
+    font-weight: 50;
+}
+
+.navbar ul li a:hover {
+    background-color: #7c6651;
+    border-radius: 5px;
+    color: #ffd91d;
+    
+}
+
+.navbar ul li a.active {
+    color: #ffeb3b;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .navbar {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .navbar ul {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .navbar ul li {
+        width: 100%;
+    }
+
+    .navbar ul li a {
+        display: block;
+        padding: 10px 0;
+        width: 100%;
+    }
+}
