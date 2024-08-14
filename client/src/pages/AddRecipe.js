@@ -1,12 +1,14 @@
-// Page for adding a new recipe
 import React from 'react';
 import RecipeForm from '../components/RecipeForm';
+import '../styles/AddRecipe.css';
 
 function AddRecipe() {
   return (
-    <div>
-      <h1>Add a New Recipe</h1>
-      <RecipeForm onSave={(recipe) => console.log('Recipe saved:', recipe)} />
+    <div className="add-recipe-container">
+      <h1 className="add-recipe-title">Add a New Recipe</h1>
+      <div className="form-container">
+        <RecipeForm onSave={(recipe) => console.log('Recipe saved:', recipe)} />
+      </div>
     </div>
   );
 }
