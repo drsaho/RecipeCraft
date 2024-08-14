@@ -5,7 +5,7 @@ import '../styles/AddRecipe.css';
 function AddRecipe() {
   return (
     <div className="add-recipe-container">
-      <h1 className="add-recipe-title">Add a New Recipe</h1>
+      <h1 className="add-recipe-title">What's Your Recipe?</h1>
       <div className="form-container">
         <RecipeForm onSave={(recipe) => console.log('Recipe saved:', recipe)} />
       </div>
