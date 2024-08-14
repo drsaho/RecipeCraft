@@ -15,8 +15,8 @@ app.use(cors());
 app.use(express.json());
 
 // Connect to MongoDB
-mongoose.connect(process.env.MONGO_URI)
-    .then(() => console.log('MongoDB connected successfully'))
+mongoose.connect("mongodb+srv://heart:soul@jellypie.urwrx.mongodb.net/")
+    .then(() => console.log('MonMONGO_URIgoDB connected successfully'))
     .catch((err) => {
         console.error('MongoDB connection error:', err);
         process.exit(1);
@@ -27,5 +27,5 @@ app.use('/api/users', authRoutes);
 app.use('/api/recipes', recipeRoutes);
 
 // Start server
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 3001;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
