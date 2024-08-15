@@ -15,6 +15,7 @@ function Navbar() {
                 <li><Link to="/add-recipe">Craft A Recipe</Link></li>
                 <li><Link to="/search">Search Recipes</Link></li>
                 <li><Link to="/profile">Profile</Link></li>
+      
                 {user ? (
                     <li><button onClick={logout} className="logout-button">Logout</button></li>
                 ) : (
@@ -23,6 +24,7 @@ function Navbar() {
                         <li><Link to="/signup">Sign Up</Link></li>
                     </>
                 )}
+
             </ul>
         </nav>
     );
