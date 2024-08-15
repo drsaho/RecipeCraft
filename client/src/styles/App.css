@@ -90,11 +90,11 @@ input[type="text"], input[type="email"], input[type="password"] {
 .navbar ul li a:hover {
     background-color: #7c6651;
     border-radius: 5px;
-    color: #ffd91d;
+    color: solid #a67c52;
 }
 
 .navbar ul li a.active {
-    color: #ffeb3b;
+    color: solid #a67c52;
 }
 
 /* Responsive Design */
@@ -135,7 +135,7 @@ input[type="text"], input[type="email"], input[type="password"] {
 .logout-button:hover {
   background-color: #7c6651;
   border-radius: 5px;
-  color: #ffd91d;
+  color:solid #a67c52;
 }
 
 .error-message {
