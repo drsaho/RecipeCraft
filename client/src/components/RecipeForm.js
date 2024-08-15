@@ -15,7 +15,17 @@ const RecipeForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post('/api/recipes', formData); 
+      const token = localStorage.getItem('token');
+      if (!token) {
+        throw new Error('User is not authenticated');
+      }
+
+      const res = await axios.post('/api/recipes', formData, {
+        headers: {
+          'x-auth-token': token,
+          'Content-Type': 'application/json',
+        },
+      });
       console.log('Recipe added:', res.data);
     } catch (error) {
       console.error('Error adding recipe:', error);
@@ -46,7 +56,7 @@ const RecipeForm = () => {
         placeholder="Instructions"
         required
       />
-      <button type="submit">Add Recipe</button>
+      <button type="submit">Craft Recipe</button>
     </form>
   );
 };

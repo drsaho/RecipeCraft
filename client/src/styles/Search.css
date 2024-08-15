@@ -75,7 +75,7 @@
 
 /* Individual Result Card */
 .search-result-card {
-    background-color: #fff;
+    background-color: #f4f1ea;
     border-radius: 10px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     overflow: hidden;
@@ -109,6 +109,6 @@
     padding: 10px;
 }
 
-.card-link:hover {
-    transform: scale(1.05);
+.search-result-card:hover {
+    transform: translateY(-5px);
 }

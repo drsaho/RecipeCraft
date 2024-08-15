@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import RecipeCard from '../components/RecipeCard';
+import '../styles/Profile.css';
 
 function Profile() {
     const [user, setUser] = useState(null);
@@ -53,21 +54,29 @@ function Profile() {
     if (!user) return <div>Loading...</div>;
 
     return (
-        <div>
-            <h1>User Profile</h1>
-            <div>
-                <img src={user.profileImageUrl || 'https://via.placeholder.com/150'} alt="Profile" style={{ width: '150px', height: '150px', borderRadius: '50%' }} />
+        <div className="profile-container">
+            <h1 className="profile-heading">User Profile</h1>
+            <h2 className="profile-name">{user.name}</h2> {/* Added user's name */}
+            <div className="profile-image-container">
+                <img
+                    src={user.profileImageUrl || 'https://via.placeholder.com/150'}
+                    alt="Profile"
+                    className="profile-image"
+                />
             </div>
-            <div>
+            <div className="profile-image-update">
                 <input
                     type="text"
                     placeholder="Enter Image URL"
                     value={imageUrl}
                     onChange={(e) => setImageUrl(e.target.value)}
+                    className="profile-image-input"
                 />
-                <button onClick={updateProfileImage}>Update Profile Image</button>
+                <button className="profile-image-button" onClick={updateProfileImage}>
+                    Update Profile Image
+                </button>
             </div>
-            <h2>Your Favorite Recipes</h2>
+            <h2 className="favorites-heading">Your Favorite Recipes</h2>
             <div className="recipe-list">
                 {favorites.map(recipe => (
                     <RecipeCard key={recipe._id} recipe={recipe} />

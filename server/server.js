@@ -7,7 +7,7 @@ const dotenv = require('dotenv');
 dotenv.config();
 
 const authRoutes = require('./routes/authRoutes');
-const recipeRoutes = require('./routes/recipeRoutes');
+const userRoutes = require('./routes/userRoutes');
 
 // Initialize Express app
 const app = express();
@@ -23,8 +23,8 @@ mongoose.connect("mongodb+srv://heart:soul@jellypie.urwrx.mongodb.net/")
     });
 
 // Use Routes
-app.use('/api/users', authRoutes);
-app.use('/api/recipes', recipeRoutes);
+app.use('/api/users', userRoutes); 
+app.use('/api/auth', authRoutes); 
 
 // Start server
 const PORT = process.env.PORT || 3001;
