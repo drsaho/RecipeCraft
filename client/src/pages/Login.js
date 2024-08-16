@@ -1,21 +1,19 @@
-import React, { useState } from 'react';
-import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import React, { useState, useContext } from 'react';
+import AuthContext from '../context/AuthContext';
 import '../styles/Login.css'; 
 
 function Login() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const { login } = useContext(AuthContext);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState('');
-    const navigate = useNavigate();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         setLoading(true);
         setError('');
 
-        // Basic form validation
         if (!email || !password) {
             setError('Please enter both email and password.');
             setLoading(false);
@@ -23,9 +21,7 @@ function Login() {
         }
 
         try {
-            const res = await axios.post('/api/users/login', { email, password });
-            localStorage.setItem('token', res.data.token);
-            navigate('/profile');
+            await login(email, password);
         } catch (err) {
             setError('Invalid credentials. Please try again.');
         } finally {

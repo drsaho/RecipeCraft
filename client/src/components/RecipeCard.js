@@ -9,7 +9,7 @@ function RecipeCard({ recipe }) {
     };
 
     return (
-        <Link to={`/recipe/${recipe.id}`} className="recipe-card-link">
+        <Link to={`/recipe/${recipe.recipeId || recipe.id}`} className="recipe-card-link">
             <div className="recipe-card">
                 <img
                     src={recipe.image || placeholderImage}
