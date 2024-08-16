@@ -13,13 +13,9 @@ export const AuthProvider = ({ children }) => {
         const checkUserLoggedIn = async () => {
             try {
                 const res = await axios.get('/api/users/current', {
-                    headers: {
-                        'x-auth-token': localStorage.getItem('token'),
-                    },
+                    headers: { 'x-auth-token': localStorage.getItem('token') },
                 });
-                if (res.data) {
-                    setUser(res.data);
-                }
+                if (res.data) setUser(res.data);
             } catch (err) {
                 console.error('Error checking logged in user:', err);
             } finally {
@@ -32,7 +28,7 @@ export const AuthProvider = ({ children }) => {
 
     const login = async (email, password) => {
         try {
-            const res = await axios.post('/api/users/login', { email, password });
+            const res = await axios.post('/api/auth/login', { email, password });
             localStorage.setItem('token', res.data.token);
             setUser(res.data.user);
             navigate('/profile');

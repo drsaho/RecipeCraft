@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
-import DOMPurify from 'dompurify'; // DOMPurify for sanitizing HTML
+import DOMPurify from 'dompurify';
 import '../styles/RecipeDetail.css';
 
 function RecipeDetail() {
@@ -24,7 +24,12 @@ function RecipeDetail() {
             }
         };
 
-        fetchRecipe();
+        if (id) {
+            fetchRecipe();
+        } else {
+            setError('Recipe ID is missing');
+            setLoading(false);
+        }
     }, [id]);
 
     const saveToFavorites = async () => {
