@@ -4,7 +4,8 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 100vh;
+    height: 200vh;
+    background-image: url('../assets/bghome.png');
     background-color: #f4f4f4;
     padding: 20px;
     text-align: center;
@@ -12,9 +13,9 @@
 
 /* Hero image container */
 .hero-image {
-    width: 100%;
+    width: 80%;
     height: 80vh; 
-    background-image: url('../assets/HeroImage.png'); 
+    background-image: url('../assets/bg5.png'); 
     background-size: 100% 100%; 
     background-position: center;
     display: flex;
@@ -25,9 +26,10 @@
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
     padding: 20px;
     box-sizing: border-box;
-    border-radius: 15px;
+    border-radius: 5px;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); 
     overflow: hidden; 
+    margin-top: 0;
 }
 
 /* Home page title */
@@ -39,7 +41,7 @@
 
 /* Home page paragraph */
 .hero-image p {
-    font-size: 1.5rem;
+    font-size: 1.5rem; 
     max-width: 600px;
     margin-bottom: 20px;
     line-height: 1.6;
