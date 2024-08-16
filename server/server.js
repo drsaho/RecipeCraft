@@ -26,6 +26,14 @@ mongoose.connect("mongodb+srv://heart:soul@jellypie.urwrx.mongodb.net/")
 app.use('/api/users', userRoutes); 
 app.use('/api/auth', authRoutes); 
 
+if (process.env.NODE_ENV === 'production') {
+    app.use(express.static(path.join(__dirname, '../client/dist')));
+
+    app.get('*', (req, res) => {
+      res.sendFile(path.join(__dirname, '../client/dist/index.html'));
+    });
+  }
+
 // Start server
 const PORT = process.env.PORT || 3001;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
