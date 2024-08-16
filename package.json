@@ -10,6 +10,7 @@
   "scripts": {
     "start": "concurrently \"npm run server\" \"npm run client\"",
     "server": "cd server && npm start",
+    "render-build":"npm install && npm run build",
     "client": "cd client && npm start"
   }
 }
